@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: NVIDIA Jetson Developer Forums
+    url: https://forums.developer.nvidia.com/c/agx-autonomous-machines/jetson-embedded-systems/70
+    about: For JetPack, L4T, CUDA, and TensorRT questions not specific to this image.
+  - name: Ultralytics YOLOv5
+    url: https://github.com/ultralytics/yolov5/issues
+    about: For YOLOv5 model, training, and export questions.

@@ -1,0 +1,70 @@
+name: Bug report
+description: Something doesn't work after flashing the golden image
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, please check [docs/TROUBLESHOOTING.md](../blob/main/docs/TROUBLESHOOTING.md) —
+        it covers black screens, `torch.cuda.is_available() == False`, camera issues, and low FPS.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, what you got instead.
+    validations: {required: true}
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Where did it break?
+      options:
+        - Downloading the image
+        - Flashing the card
+        - First boot
+        - Running YOLOv5
+        - Camera
+        - Performance
+        - Other
+    validations: {required: true}
+
+  - type: input
+    id: host
+    attributes:
+      label: Host OS used to flash
+      placeholder: macOS 15.2 / Ubuntu 24.04 / Windows 11 + Etcher
+    validations: {required: true}
+
+  - type: input
+    id: card
+    attributes:
+      label: microSD card
+      placeholder: SanDisk Extreme 64 GB A2
+    validations: {required: true}
+
+  - type: input
+    id: power
+    attributes:
+      label: Power supply
+      placeholder: 5V 4A barrel jack, J48 jumper fitted
+    validations: {required: true}
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Device output
+      description: Run these on the Nano and paste the output (skip if it doesn't boot).
+      render: shell
+      value: |
+        cat /etc/nv_tegra_release
+        nvpmodel -q
+        free -h
+        python3 -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: "`dmesg | tail -50`, serial console output, or the full error."
+      render: shell
