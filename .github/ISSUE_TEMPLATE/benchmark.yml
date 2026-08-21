@@ -1,0 +1,30 @@
+name: Benchmark submission
+description: Share measured FPS/latency from your Jetson Nano
+labels: [benchmark]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Run `./scripts/benchmark.sh` on the device and paste the generated file below.
+        Numbers without power mode and clock state recorded can't be compared, so the
+        script captures those for you.
+
+  - type: textarea
+    id: results
+    attributes:
+      label: benchmark-*.md contents
+      render: markdown
+    validations: {required: true}
+
+  - type: input
+    id: cooling
+    attributes:
+      label: Cooling
+      placeholder: Passive heatsink / Noctua 40mm @ PWM 200
+    validations: {required: true}
+
+  - type: input
+    id: notes
+    attributes:
+      label: Anything unusual?
+      placeholder: USB SSD rootfs, overclocked, custom engine, ...

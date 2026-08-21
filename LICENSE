@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2026 bluebox-dev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------------
+SCOPE OF THIS LICENSE
+
+This MIT license covers ONLY the scripts and documentation in this repository.
+
+It does NOT cover the distributed disk image (golden_image.img.gz). That image
+is a composite work containing third-party software under its own terms,
+including but not limited to:
+
+  * NVIDIA Jetson Linux (L4T) / JetPack   — NVIDIA Software License Agreement
+                                            and NVIDIA Jetson Linux EULA
+  * Ubuntu 18.04 LTS and its packages     — GPL/LGPL/MIT/BSD and others
+  * Ultralytics YOLOv5                    — AGPL-3.0
+  * PyTorch / torchvision                 — BSD-3-Clause
+
+Anyone redistributing the image, or building a product on top of it, is
+responsible for complying with every one of those licenses. AGPL-3.0 (YOLOv5)
+in particular imposes source-disclosure obligations on network-deployed
+derivative works; Ultralytics offers a separate commercial license for cases
+where AGPL-3.0 is unsuitable.

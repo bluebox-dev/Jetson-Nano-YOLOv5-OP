@@ -1,0 +1,33 @@
+# ─── Disk images (NEVER commit — distributed via GitHub Releases) ─────────────
+*.img
+*.img.gz
+*.img.xz
+*.img.zst
+*.iso
+*.part
+*.parts/
+golden_image*
+image-parts/
+
+# ─── Checksums generated locally ──────────────────────────────────────────────
+*.sha256.local
+
+# ─── OS cruft ─────────────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# ─── Editors ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*~
+
+# ─── Python (helper tooling) ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/

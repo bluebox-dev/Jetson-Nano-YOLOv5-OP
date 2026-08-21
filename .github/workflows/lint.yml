@@ -1,0 +1,56 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  shellcheck:
+    name: Shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: ./scripts
+          severity: warning
+
+  guard-large-files:
+    name: Block image commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail if a disk image or >50 MB file was committed
+        run: |
+          set -euo pipefail
+          bad=$(git ls-files | grep -E '\.(img|img\.gz|img\.xz|img\.zst|iso)$' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::Disk images must ship as GitHub Release assets, not git objects:"
+            echo "$bad"
+            exit 1
+          fi
+          big=$(git ls-files -z | xargs -0 -I{} sh -c 'test -f "{}" && [ "$(wc -c < "{}")" -gt 52428800 ] && echo "{}"' || true)
+          if [ -n "$big" ]; then
+            echo "::error::Files larger than 50 MB found:"
+            echo "$big"
+            exit 1
+          fi
+          echo "OK — no large files tracked."
+
+  links:
+    name: Markdown links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          # Offline: resolves relative paths and heading anchors, skips the network.
+          # Note: lychee drops non-ASCII characters when slugifying headings, so
+          # Thai sections in README.th.md need an explicit <a id="..."></a> anchor
+          # to be checkable here — GitHub itself resolves Thai slugs fine.
+          # Repo-relative shortcuts like ../../releases/latest also cannot work
+          # offline; use the absolute URL, which offline mode skips.
+          args: --no-progress --offline --include-fragments '**/*.md'
+          fail: true
