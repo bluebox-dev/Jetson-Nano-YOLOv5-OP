@@ -249,6 +249,7 @@ Jetson-Nano-YOLOv5-OP/
 ├── CHECKSUMS.txt              ← SHA-256 ของ image ที่เผยแพร่
 ├── scripts/
 │   ├── flash.sh               ← เขียน image ลงการ์ด (ปลอดภัย, ถามยืนยัน)
+│   ├── scan-image.sh          ← สแกนหา credential ก่อนเผยแพร่ (บังคับ)
 │   ├── download-image.sh      ← ดาวน์โหลด + ตรวจสอบ + ต่อไฟล์
 │   ├── verify.sh              ← ตรวจ checksum
 │   ├── split-image.sh         ← (ผู้ดูแล) ตัด image เป็น release assets

@@ -306,6 +306,8 @@ Jetson-Nano-YOLOv5-OP/
 ├── LICENSE                    ← MIT, covers the tooling in this repo
 ├── scripts/
 │   ├── flash.sh               ← write the image to a card (safe, interactive)
+│   ├── scan-image.sh          ← credential scan; gates publish-release.sh
+│   ├── scan_image.py          ←   the scanner itself (streams, never prints values)
 │   ├── download-image.sh      ← fetch + verify + join release parts
 │   ├── verify.sh              ← checksum a local image
 │   ├── split-image.sh         ← maintainer: cut the image into release assets
@@ -329,10 +331,17 @@ Jetson-Nano-YOLOv5-OP/
 Cutting a new image release:
 
 ```bash
-./scripts/shrink-image.sh      # on the Nano: zero free space, then re-gzip
-./scripts/split-image.sh       # → image-parts/ + SHA256SUMS
+./scripts/shrink-image.sh --prepare   # on the Nano: strip history/keys, zero free space
+./scripts/split-image.sh              # → image-parts/ + SHA256SUMS
+./scripts/scan-image.sh               # REQUIRED: credential scan → scan-report.txt
+./scripts/publish-release.sh --dry-run v1.0.0   # rehearse, touches nothing
 ./scripts/publish-release.sh v1.0.0
 ```
+
+`publish-release.sh` refuses to upload unless `scan-report.txt` says `CLEAN`, and
+asks you to retype the tag before it creates anything. A public release is
+mirrored within minutes and cannot be recalled — always rehearse with
+`--dry-run` first.
 
 Building the whole thing from a stock JetPack SD card is documented step by step in **[docs/BUILD_FROM_SCRATCH.md](docs/BUILD_FROM_SCRATCH.md)** — so this image is reproducible, not a black box.
 

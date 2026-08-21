@@ -6,6 +6,11 @@ hand on real hardware following [docs/BUILD_FROM_SCRATCH.md](docs/BUILD_FROM_SCR
 
 ## Ground rules
 
+**Never publish an unscanned image.** `scripts/scan-image.sh` must pass before
+`publish-release.sh` will upload anything, and `--dry-run` exercises the whole
+path without touching GitHub. Use `--dry-run` for any testing — running the
+real script with a throwaway tag creates a real public release.
+
 **Never commit the image.** Not the `.img`, not the `.img.gz`, not the split
 parts. `.gitignore` covers the usual names and CI fails any file over 50 MB.
 Images ship as GitHub Release assets — see `scripts/split-image.sh`.

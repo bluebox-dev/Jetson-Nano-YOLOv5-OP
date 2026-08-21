@@ -9,8 +9,9 @@
 golden_image*
 image-parts/
 
-# ─── Checksums generated locally ──────────────────────────────────────────────
+# ─── Checksums and scan reports generated locally ─────────────────────────────
 *.sha256.local
+scan-report.txt
 
 # ─── OS cruft ─────────────────────────────────────────────────────────────────
 .DS_Store
