@@ -102,7 +102,7 @@ GitHub มีเพดานที่ไฟล์นี้ทะลุไปห�
 |---|---|---|
 | git push ปกติ | **100 MB** (บล็อกตายตัว) | ❌ push ไม่ผ่าน |
 | Git LFS | **2 GB** ต่อไฟล์, ฟรี 1 GB | ❌ ใหญ่เกิน และต้องเสียเงิน |
-| **GitHub Releases** | **2 GB ต่อ asset** ไม่จำกัดจำนวน ฟรี | ✅ **แบ่งเป็น 7 ส่วน** |
+| **GitHub Releases** | **2 GB ต่อ asset** ไม่จำกัดจำนวน ฟรี | ✅ **แบ่งเป็น 6 ส่วน** |
 
 `split-image.sh` จึงตัด image เป็นชิ้นละ 1900 MB พร้อมไฟล์ `SHA256SUMS`, `publish-release.sh` อัปโหลดขึ้น release, และ `download-image.sh` ดึงกลับมา ตรวจ checksum ทุกชิ้น แล้วต่อกลับเป็นไฟล์เดิมแบบ byte-for-byte
 

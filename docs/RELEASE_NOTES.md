@@ -20,8 +20,9 @@ A ready-to-flash microSD image for the **Jetson Nano Developer Kit (P3448-0000, 
 The image is 10.25 GiB, above GitHub's 2 GB per-asset limit, so it is split:
 
 ```
-golden_image.img.gz.part-00 … part-06     ~1.9 GB each
-SHA256SUMS                                verify + reassemble
+golden_image.img.gz.part-00 … part-04    1,992,294,400 B each
+golden_image.img.gz.part-05              1,045,782,904 B
+SHA256SUMS                               verify + reassemble
 ```
 
 Download and join automatically:

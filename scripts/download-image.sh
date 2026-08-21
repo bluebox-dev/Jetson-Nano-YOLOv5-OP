@@ -24,9 +24,17 @@ else
 fi
 
 echo "==> Verifying parts"
+[ -f "$PARTS/SHA256SUMS" ] || { echo "SHA256SUMS missing from the release — cannot verify." >&2; exit 1; }
 SHACMD=$(command -v sha256sum || echo "shasum -a 256")
-( cd "$PARTS" && grep -- "-part-" SHA256SUMS | $SHACMD -c - ) \
-  || { echo "Checksum mismatch — delete $PARTS and download again." >&2; exit 1; }
+(
+  cd "$PARTS"
+  grep -F '.part-' SHA256SUMS > .parts.sums
+  [ -s .parts.sums ] || { echo "No part checksums found in SHA256SUMS." >&2; exit 1; }
+  echo "    $(wc -l < .parts.sums) parts to check"
+  # shellcheck disable=SC2086
+  $SHACMD -c .parts.sums
+  rm -f .parts.sums
+) || { echo "Checksum mismatch — delete $PARTS and download again." >&2; exit 1; }
 
 echo "==> Reassembling $BASE"
 cat "$PARTS/${BASE}.part-"* > "$BASE"

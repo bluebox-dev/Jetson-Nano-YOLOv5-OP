@@ -75,7 +75,7 @@ cd Jetson-Nano-YOLOv5-OP
 
 ```mermaid
 flowchart LR
-    A["📥 download-image.sh<br/><sub>7 parts · SHA-256 verified</sub>"] --> B["🧩 join<br/><sub>golden_image.img.gz</sub>"]
+    A["📥 download-image.sh<br/><sub>6 parts · SHA-256 verified</sub>"] --> B["🧩 join<br/><sub>golden_image.img.gz</sub>"]
     B --> C["🔥 flash.sh<br/><sub>gunzip │ dd → /dev/rdiskN</sub>"]
     C --> D["💾 microSD<br/><sub>29 GiB · GPT · 14 partitions</sub>"]
     D --> E["⚡ First boot<br/><sub>rootfs auto-expands</sub>"]
@@ -123,7 +123,7 @@ GitHub enforces hard limits that this file blows straight through:
 |---|---|---|
 | Normal git push | **100 MB** (hard block) | ❌ push rejected |
 | Git LFS | **2 GB** per file, 1 GB free storage | ❌ too big, and would cost money |
-| **GitHub Releases** | **2 GB per asset**, unlimited assets, free | ✅ **split into 7 parts** |
+| **GitHub Releases** | **2 GB per asset**, unlimited assets, free | ✅ **split into 6 parts** |
 
 So `split-image.sh` cuts the image into 1900 MB chunks with a `SHA256SUMS` manifest, `publish-release.sh` uploads them, and `download-image.sh` pulls them back down, verifies each part, and reassembles the original byte-for-byte.
 
