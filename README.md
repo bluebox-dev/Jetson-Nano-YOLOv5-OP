@@ -135,7 +135,7 @@ So `split-image.sh` cuts the image into 1900 MB chunks with a `SHA256SUMS` manif
 ./scripts/download-image.sh
 ```
 
-**Manual** — download every `golden_image.img.gz.part-*` plus `SHA256SUMS` from the [Releases page](../../releases/latest), then:
+**Manual** — download every `golden_image.img.gz.part-*` plus `SHA256SUMS` from the [Releases page](https://github.com/bluebox-dev/Jetson-Nano-YOLOv5-OP/releases/latest), then:
 
 ```bash
 cd image-parts && shasum -a 256 -c SHA256SUMS && cat golden_image.img.gz.part-* > ../golden_image.img.gz

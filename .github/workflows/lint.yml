@@ -46,5 +46,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: lycheeverse/lychee-action@v2
         with:
+          # Offline: resolves relative paths and heading anchors, skips the network.
+          # Note: lychee drops non-ASCII characters when slugifying headings, so
+          # Thai sections in README.th.md need an explicit <a id="..."></a> anchor
+          # to be checkable here — GitHub itself resolves Thai slugs fine.
+          # Repo-relative shortcuts like ../../releases/latest also cannot work
+          # offline; use the absolute URL, which offline mode skips.
           args: --no-progress --offline --include-fragments '**/*.md'
           fail: true

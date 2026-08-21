@@ -14,7 +14,7 @@
 
 <samp>29 GiB ดิบ &nbsp;•&nbsp; 10.25 GiB บีบอัด &nbsp;•&nbsp; ต้องใช้ microSD อย่างน้อย 32 GB</samp>
 
-[**English**](README.md) &nbsp;·&nbsp; [**เริ่มใช้งาน**](#-เริ่มใช้งานอย่างเร็ว) &nbsp;·&nbsp; [**มีอะไรอยู่ข้างใน**](#-มีอะไรอยู่ข้างใน) &nbsp;·&nbsp; [**แก้ปัญหา**](docs/TROUBLESHOOTING.md) &nbsp;·&nbsp; [**คำถามที่พบบ่อย**](docs/FAQ_TH.md)
+[**English**](README.md) &nbsp;·&nbsp; [**เริ่มใช้งาน**](#th-quickstart) &nbsp;·&nbsp; [**มีอะไรอยู่ข้างใน**](#th-contents) &nbsp;·&nbsp; [**แก้ปัญหา**](docs/TROUBLESHOOTING.md) &nbsp;·&nbsp; [**คำถามที่พบบ่อย**](docs/FAQ_TH.md)
 
 </div>
 
@@ -36,6 +36,8 @@
 
 ---
 
+<a id="th-contents"></a>
+
 ## 📦 มีอะไรอยู่ข้างใน
 
 | ชั้น | เวอร์ชัน | หมายเหตุ |
@@ -56,6 +58,8 @@
 > ไฟล์ `.engine` ของ TensorRT ผูกกับ GPU, เวอร์ชัน TensorRT และ driver ที่ใช้สร้างพอดีเป๊ะ เนื่องจาก image นี้แช่แข็งทั้งสามอย่างไว้ `yolov5n.engine` จึงโหลดได้ทันทีบน Jetson Nano ทุกเครื่อง ไม่ต้องรอ build ใหม่ 20 นาที
 
 ---
+
+<a id="th-quickstart"></a>
 
 ## 🚀 เริ่มใช้งานอย่างเร็ว
 
@@ -112,7 +116,7 @@ GitHub มีเพดานที่ไฟล์นี้ทะลุไปห�
 ./scripts/download-image.sh     # ต้องมี GitHub CLI (gh)
 ```
 
-หรือดาวน์โหลดเองจากหน้า [Releases](../../releases/latest) ทุกไฟล์ `golden_image.img.gz.part-*` และ `SHA256SUMS` แล้ว:
+หรือดาวน์โหลดเองจากหน้า [Releases](https://github.com/bluebox-dev/Jetson-Nano-YOLOv5-OP/releases/latest) ทุกไฟล์ `golden_image.img.gz.part-*` และ `SHA256SUMS` แล้ว:
 
 ```bash
 cd image-parts && shasum -a 256 -c SHA256SUMS && cat golden_image.img.gz.part-* > ../golden_image.img.gz
