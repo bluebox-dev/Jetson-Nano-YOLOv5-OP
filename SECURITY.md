@@ -5,11 +5,19 @@
 Every device flashed from this image starts identical. That means:
 
 - **The default password is not a secret.** Anyone with the image knows it. Run `passwd` before connecting the device to any network.
-- **Check your SSH host keys.** `scripts/shrink-image.sh --prepare` strips them and installs a `regen-ssh-hostkeys` unit that recreates them on first boot, so clones do not share a host identity. If your image was not prepared that way, regenerate them yourself:
+- **The published image ships with SSH host keys baked in.** The v1.0.0 release
+  was cut without running `scripts/shrink-image.sh --prepare`, so
+  `/etc/ssh/ssh_host_*` travelled with it and every clone shares one SSH
+  identity — the private keys are public. Regenerate them before the board
+  touches a network:
 
   ```bash
   sudo rm -f /etc/ssh/ssh_host_* && sudo ssh-keygen -A && sudo systemctl restart ssh
   ```
+
+  Future releases should be prepared with `shrink-image.sh --prepare`, which
+  strips the keys and installs a unit that recreates them on first boot.
+
 - **This image is not hardened.** Ubuntu 18.04 reached end of standard support in April 2023. JetPack 4.6.6 is the last release for Jetson Nano, so kernel and userspace CVEs will not be patched upstream. Treat any Nano running this image as an untrusted-network device: put it behind a firewall, do not expose SSH to the internet, and do not store credentials on it.
 
 ## Reporting a problem with a published image

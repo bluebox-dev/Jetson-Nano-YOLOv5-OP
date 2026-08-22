@@ -89,6 +89,13 @@ cd Jetson-Nano-YOLOv5-OP
 > [!CAUTION]
 > SD card ปลอมหรือของถูกเกินจริงคือสาเหตุอันดับหนึ่งของอาการ "บูตได้ครั้งเดียวแล้วไฟล์พัง" ซื้อจากร้านที่เชื่อถือได้
 
+> [!CAUTION]
+> **image นี้มี SSH host key ติดมาด้วย — ทุกเครื่องที่ flash จะมี SSH identity เดียวกัน และ private key เป็นสาธารณะ** ต้อง regenerate ก่อนต่อเน็ตเสมอ:
+> ```bash
+> sudo rm -f /etc/ssh/ssh_host_* && sudo ssh-keygen -A && sudo systemctl restart ssh
+> ```
+> รหัสผ่านเริ่มต้นก็เหมือนกันทุกเครื่อง อย่าลืม `passwd` ดูรายละเอียดที่ [SECURITY.md](SECURITY.md)
+
 ---
 
 ## 📥 ดาวน์โหลด image

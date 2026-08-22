@@ -106,6 +106,13 @@ flowchart LR
 > [!CAUTION]
 > Cheap or counterfeit SD cards are the #1 cause of "it boots once then corrupts." A card that fails `f3probe` will fail here too.
 
+> [!CAUTION]
+> **This image ships with SSH host keys baked in — every clone shares one SSH identity, and the private keys are public.** Regenerate them before the board touches a network:
+> ```bash
+> sudo rm -f /etc/ssh/ssh_host_* && sudo ssh-keygen -A && sudo systemctl restart ssh
+> ```
+> The default password is identical on every clone too. Run `passwd`. See [SECURITY.md](SECURITY.md).
+
 ---
 
 ## 📥 Download the image

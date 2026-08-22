@@ -49,10 +49,31 @@ cat golden_image.img.gz.part-* > golden_image.img.gz
 | Minimum card | 32 GB (64 GB UHS-I U3 recommended) |
 | SHA-256 (`.img.gz`) | `85a93cde3f446fcdf16ea73d1d8a6ead68c573f652066172ac6f259badfdf2e3` |
 
+## ⚠️ Read before you put this on a network
+
+This image ships **with SSH host keys baked in**. It was cloned from a working
+Jetson without stripping `/etc/ssh/ssh_host_*`, so **every device flashed from
+this release shares one SSH identity**. Anyone who downloads the image holds
+the private half of your board's host key.
+
+What that means in practice: SSH host-key verification gives you nothing, and
+an attacker on your network can impersonate your Nano without triggering a
+host-key warning. Fix it on first boot — one command:
+
+```bash
+sudo rm -f /etc/ssh/ssh_host_* && sudo ssh-keygen -A && sudo systemctl restart ssh
+```
+
+The default password is likewise identical on every clone, and `/etc/shadow`
+travels inside the image, so it can be cracked offline. Run `passwd` too.
+
+Verified absent from this image: Wi-Fi passwords, AWS/API tokens, `.netrc`
+credentials. Checked with `scripts/scan-image.sh`.
+
 ## After flashing
 
 1. Boot with HDMI + keyboard. First boot takes 2–4 min (rootfs expansion).
-2. Log in as `jetson` and **change the password immediately**.
+2. Log in as `jetson`, **change the password**, and **regenerate the SSH host keys** (above).
 3. `sudo nvpmodel -m 0 && sudo jetson_clocks`
 
 Full checklist: [docs/FIRST_BOOT.md](../docs/FIRST_BOOT.md)
